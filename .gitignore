@@ -1,1 +1,3 @@
 frontend
+**/migrations/*
+**/__pycache__/*

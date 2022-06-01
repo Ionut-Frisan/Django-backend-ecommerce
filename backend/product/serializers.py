@@ -8,6 +8,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
+            "uuid",
             "id",
             "name",
             "get_absolute_url",
@@ -17,7 +18,10 @@ class ProductSerializer(serializers.ModelSerializer):
             "get_thumbnail"
         )
 
-
+class ProductSerializerCrud(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
 class CategorySerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True)
 
