@@ -1,4 +1,5 @@
 from email.policy import default
+from typing import Iterable, Optional
 from PIL import Image
 from io import BytesIO
 
@@ -43,7 +44,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE, null=False)
     name = models.CharField(max_length=255, null=False)
-    slug = models.SlugField(null=False)
+    slug = models.SlugField(null=False, unique=True)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     discount = models.DecimalField(max_digits=5, decimal_places=2, default=0)
@@ -89,3 +90,7 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+    
+    def save(self, *args, **kwargs):
+        self.thumbnail = self.make_thumbnail(self.image)
+        super(Product, self).save(*args, **kwargs)

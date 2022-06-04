@@ -11,6 +11,11 @@ urlpatterns = [
     path('products/all/', views.AllProductList.as_view()),
     path('products/count/', views.ProductCount.as_view()),
     path('products/add/', views.AddProduct.as_view()),
-    path('products/delete/', views.DeleteProduct.as_view()),
+    path('products/delete/<slug:uuid_slug>/', views.DeleteProduct.as_view()),
     path('products/update/', views.UpdateProduct.as_view()),
+    path('products/get/<slug:uuid_slug>', views.ProductByUuid.as_view()),
+    path('categories/all/', views.AllCategoryList.as_view()),
+    path('categories/add/', views.AddCategory.as_view()),
+    path('categories/delete/<slug:id_slug>', views.DeleteCategory.as_view()),
+    path('categories/update/', views.UpdateCategory.as_view()),
 ]

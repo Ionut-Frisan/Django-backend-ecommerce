@@ -1,3 +1,7 @@
 frontend
 **/migrations/*
 **/__pycache__/*
+backend/media/
+backend/*/migrations/
+backend/*/__pychache__/
+backend/db.sqlite3
